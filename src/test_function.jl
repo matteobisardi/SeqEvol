@@ -1,1 +1,1 @@
-test() = 2
+current_version() = println("This is the master version")
