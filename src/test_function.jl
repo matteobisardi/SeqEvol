@@ -1,1 +1,1 @@
-current_version() = println("Developer version.")
+current_version() = println("This is the main version")
