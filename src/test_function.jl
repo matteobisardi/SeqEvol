@@ -1,1 +1,2 @@
-current_version() = println("This is the master version")
+current_version() = println("This is the main version")
+
