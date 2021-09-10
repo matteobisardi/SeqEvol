@@ -136,16 +136,16 @@ end
 """
 
 
-function evol_MSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
+function evol_MSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
-	DNA_seq = 
+	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
 	FastaWriter(output_path, "a") do file
 		for i in 1:n_seq	
 			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, MC_steps, h, J, N, T)
-			writeentry(file, "$i |evolved from $wt_name with DNA Gibbs Sampling | $MC_steps MC steps,T = $(T)", vec2string(seq))	
+			writeentry(file, "$i | original wt: $wt_name | $MC_steps MC steps | T = $(T)", vec2string(seq))	
 		end
 	end	
 end
