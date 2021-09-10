@@ -207,7 +207,7 @@ end
 
 """
 
-function simmetrize_J(J_old)
+function symmetrize_J(J_old)
    J_s = deepcopy(J_old)
    q,q, N, N = size(J_old)
    for i in 1:N
