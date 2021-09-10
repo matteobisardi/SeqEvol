@@ -30,9 +30,6 @@ mutable struct SeqToEvolve
     DNA :: Array{AbstractString}
 end
 
-### TO SIMULATE PSE-1 MAKE SURE THAT pos_mut = rand(3:N-1)
-### TO SIMULATE TEM-1 MAKE SURE THAT pos_mut = rand(1:N-2)
-
 
 ################################
 """
@@ -139,14 +136,17 @@ end
 """
 
 
-function evol_msa_fix_steps_DNA_gibbs(file_name, DNA_seq, MC_steps, n_seq, h, J, T = 1; prot_name = "PSE-1") 
-	amino_seq = 
+function evol_MSA(output_path, par_path, DNA_seq, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
+	h, J = read_par_BM(output_path)
+	h = set_max_field_to_0(h)
+	J = symmetrize(J)
+	amino_seq = [cod2amino[codon] for codon in DNA_seq]
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
-	FastaWriter(file_name, "a") do file
+	FastaWriter(output_path, "a") do file
 		for i in 1:n_seq	
 			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, MC_steps, h, J, N, T)
-			writeentry(file, "$i |evolved from $prot_name with DNA Gibbs Sampling | $MC_steps MC steps,T = $(T)", vec2string(seq))	
+			writeentry(file, "$i |evolved from $wt_name with DNA Gibbs Sampling | $MC_steps MC steps,T = $(T)", vec2string(seq))	
 		end
 	end	
 end
