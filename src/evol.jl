@@ -136,11 +136,9 @@ end
 """
 
 
-function evol_MSA(output_path, params, DNA_seq, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
-	h, J = params
-	h, J = read_par_BM(output_path)
-	h = set_max_field_to_0(h)
-	J = symmetrize(J)
+function evol_MSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
+	h, J = extract_params(params_path)
+	DNA_seq = 
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
