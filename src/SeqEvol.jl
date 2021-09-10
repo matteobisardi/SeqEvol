@@ -4,10 +4,10 @@ export 	fasta2matrix,
 		read_par_BM, 
 		symmetrize_J, 
 		set_max_field_to_0, 
-		evol_msa_fix_steps_DNA_gibbs, 
+		evol_MSA, 
 		evol_seq_fix_steps_DNA_gibbs, 
 		amino2cod,
-		cod2amino
+		cod2amino, 
 
 using DelimitedFiles 
 using FastaIO 
