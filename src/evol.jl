@@ -136,7 +136,7 @@ end
 """
 
 
-function evol_MSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
+function evolMSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
