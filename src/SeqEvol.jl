@@ -5,7 +5,7 @@ using FastaIO
 using LinearAlgebra 
 using StatsBase
 
-greet() = print("Hello World!")
 include("read_write.jl")
+inclide("evol.jl")
 
 end # module
