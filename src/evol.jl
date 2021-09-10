@@ -139,7 +139,9 @@ end
 """
 
 
-function evol_msa_fix_steps_DNA_gibbs(file_name, seed_seq, MC_steps, n_seq, h, J, T = 1; prot_name = "PSE-1") 
+function evol_msa_fix_steps_DNA_gibbs(file_name, DNA_seq, MC_steps, n_seq, h, J, T = 1; prot_name = "PSE-1") 
+	amino_seq = 
+	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
 	FastaWriter(file_name, "a") do file
 		for i in 1:n_seq	
