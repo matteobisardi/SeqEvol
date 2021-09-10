@@ -13,7 +13,7 @@ using LinearAlgebra
 using StatsBase
 
 include("read_write.jl")
-inclugit switch de("evol.jl")
+include("evol.jl")
 
 
 
