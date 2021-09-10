@@ -1,6 +1,6 @@
 module SeqEvol
 
-export evolMSA
+export evolMSA, extract_params
 
 using DelimitedFiles 
 using FastaIO 

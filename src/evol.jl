@@ -136,7 +136,7 @@ end
 """
 
 
-function evolMSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
+function evolMSA(output_path, params_path::AbstractString, wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
@@ -149,6 +149,23 @@ function evolMSA(output_path, params_path, wt_path, MC_steps = 10, n_seq = 100, 
 		end
 	end	
 end
+
+
+function evolMSA(output_path, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, 
+	wt_path, MC_steps = 10, n_seq = 100, T = 1; wt_name = "unknown wt") 
+	h, J = params
+	DNA_seq = readdlm(wt_path)[:, 1]
+	amino_seq = [cod2amino[codon] for codon in DNA_seq]
+	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
+	N = length(seed_seq.Amino)
+	FastaWriter(output_path, "a") do file
+		for i in 1:n_seq	
+			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, MC_steps, h, J, N, T)
+			writeentry(file, "$i | original wt: $wt_name | $MC_steps MC steps | T = $(T)", vec2string(seq))	
+		end
+	end	
+end
+
 
 
 
