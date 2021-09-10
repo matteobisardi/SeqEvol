@@ -7,7 +7,7 @@ export 	fasta2matrix,
 		evol_MSA, 
 		evol_seq_fix_steps_DNA_gibbs, 
 		amino2cod,
-		cod2amino, 
+		cod2amino 
 
 using DelimitedFiles 
 using FastaIO 

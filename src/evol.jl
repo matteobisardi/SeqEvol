@@ -136,7 +136,8 @@ end
 """
 
 
-function evol_MSA(output_path, par_path, DNA_seq, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
+function evol_MSA(output_path, params, DNA_seq, MC_steps = 10, n_seq = 100, T = 1; wt_name = "PSE-1") 
+	h, J = params
 	h, J = read_par_BM(output_path)
 	h = set_max_field_to_0(h)
 	J = symmetrize(J)
