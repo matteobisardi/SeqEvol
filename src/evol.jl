@@ -82,8 +82,9 @@ end
 
 function evol_seq_fix_steps_DNA_gibbs(ref_seq, MC_steps, h, J, N, T = 1)
 	mutated_seq = deepcopy(ref_seq)
+	non_gapped_pos = [pos for pos in ref_seq if ref_seq[pos] != 21]
 	@inbounds for steps in 1: MC_steps
-        pos_mut = rand(3:N-1)
+        pos_mut = rand(non_gapped_pos)
 
 		old_codon = mutated_seq.DNA[pos_mut]
 
