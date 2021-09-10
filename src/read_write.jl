@@ -107,8 +107,10 @@ end
 
 """
 
-function read_par_BM(path::AbstractString, N::Integer; q::Integer = 21)
-	data = readdlm(path,' ', use_mmap = true)[:, 2:6]
+function read_par_BM(path::AbstractString; q::Integer = 21)
+    params = readdlm(path,' ', use_mmap = true)[:, 2:6]
+    l_file = size(params, 1) 
+    N = ((q - 2) + sqrt( (q-2)^2 + 8*l_file))/(2*q)
 	J = Array{Float64}(undef, q, q, N, N)
 	h = Array{Float64}(undef, q, N)
 	n_J = Int(q*q*N*(N-1)/2)
