@@ -89,7 +89,7 @@ end
 
 
 """
-	read_par_BM(path::AbstractString; q = 21)
+	read_par_BM(path::AbstractString; q::Integer = 21)
 
 	Reads the parameters of a Potts model in format
 	
@@ -110,14 +110,14 @@ end
 function read_par_BM(path::AbstractString; q::Integer = 21)
     params = readdlm(path,' ', use_mmap = true)[:, 2:6]
     l_file = size(params, 1) 
-    N = ((q - 2) + sqrt( (q-2)^2 + 8*l_file))/(2*q)
+    N = Integer(((q - 2) + sqrt( (q-2)^2 + 8*l_file))/(2*q))
 	J = Array{Float64}(undef, q, q, N, N)
 	h = Array{Float64}(undef, q, N)
 	n_J = Int(q*q*N*(N-1)/2)
 	n_h = q*N
 
 	for k in 1:n_J
-		i, j, a, b, par_j = data[k, :]
+		i, j, a, b, par_j = params[k, :]
 		i += 1
 		j += 1
 		a == 0 && (a = 21)
@@ -126,7 +126,7 @@ function read_par_BM(path::AbstractString; q::Integer = 21)
 	end
 
 	for l in (n_J + 1): n_h + n_J
-		i, a, par_h = data[l, :]
+		i, a, par_h = params[l, :]
 		i += 1
 		a == 0 && (a = 21)
 		h[a, i] = par_h
