@@ -185,7 +185,7 @@ end
 """
 
 
-function set_max_field_to_0(h_old)
+function set_max_field_to_0(h_old::Array{float64, 2})
    h_new = deepcopy(h_old)
    q, N = size(h_old)
    for i in 1:N
@@ -208,7 +208,7 @@ end
 
 """
 
-function symmetrize_J(J_old)
+function symmetrize_J(J_old::Array{Float64, 4})
    J_s = deepcopy(J_old)
    q,q, N, N = size(J_old)
    for i in 1:N
