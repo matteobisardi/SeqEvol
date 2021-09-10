@@ -1,6 +1,6 @@
 module SeqEvol
 
 greet() = print("Hello World!")
-include("test_function.jl")
+include("read_write.jl")
 
 end # module

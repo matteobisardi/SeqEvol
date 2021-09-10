@@ -1,3 +1,8 @@
+
+function testami()
+    println("Testato!")
+end
+
 """
   function fasta2matrix(filename::AbstractString; max_gap_fraction = 1)
 
