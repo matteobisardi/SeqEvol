@@ -185,7 +185,7 @@ end
 """
 
 
-function set_max_field_to_0(h_old::Array{float64, 2})
+function set_max_field_to_0(h_old::Array{Float64, 2})
    h_new = deepcopy(h_old)
    q, N = size(h_old)
    for i in 1:N

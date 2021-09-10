@@ -1,6 +1,9 @@
 module SeqEvol
 
-using DelimitedFiles FastaIO LinearAlgebra StatsBase
+using DelimitedFiles 
+using FastaIO 
+using LinearAlgebra 
+using StatsBase
 
 greet() = print("Hello World!")
 include("read_write.jl")
