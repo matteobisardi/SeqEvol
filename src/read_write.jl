@@ -1,6 +1,6 @@
 
 function testami()
-    println("Testato!")
+    println("Testato?!")
 end
 
 """
@@ -89,7 +89,7 @@ end
 
 
 """
-	read_par_BM(path::AbstractString, q, N)
+	read_par_BM(path::AbstractString; q = 21)
 
 	Reads the parameters of a Potts model in format
 	
@@ -107,7 +107,7 @@ end
 
 """
 
-function read_par_BM(path::AbstractString, q, N)
+function read_par_BM(path::AbstractString, N::Integer; q::Integer = 21)
 	data = readdlm(path,' ', use_mmap = true)[:, 2:6]
 	J = Array{Float64}(undef, q, q, N, N)
 	h = Array{Float64}(undef, q, N)
@@ -197,9 +197,9 @@ end
 
 
 """
-    simmetrize_couplings(J)
+    symmetrize_couplings(J::Array{} )
 
-    Takes in input a 4-dimensional tensor,
+    Takes as input a 4-dimensional tensor,
     containing the values of the couplings for every couple of 
     amino acids a, b and positions i, j. 
     Returns the same tensor, by symmetrizing it, 
