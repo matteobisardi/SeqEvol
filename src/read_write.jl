@@ -103,7 +103,6 @@ end
 
     "path": full path of the parameter file.
     "q": number of symbols allowed (21 for protein sequences, gaps included).
-    "N": length of the sequence.
 
 """
 
