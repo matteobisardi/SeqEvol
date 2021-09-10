@@ -1,8 +1,6 @@
 module SeqEvol
 
-export 	fasta2matrix, 
-		extract_params,  
-		evol_MSA
+export evolMSA
 
 using DelimitedFiles 
 using FastaIO 
@@ -11,7 +9,5 @@ using StatsBase
 
 include("read_write.jl")
 include("evol.jl")
-
-
 
 end # module
