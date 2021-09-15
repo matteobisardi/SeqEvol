@@ -1,11 +1,8 @@
 # SeqEvol
-Protein sequence evolution with Direct Coupling Analysis ([DCA](https://en.wikipedia.org/wiki/Direct_coupling_analysis)) in [Julia](http://julialang.org).
-
-A complete description of the algorithm can be found at https://arxiv.org/abs/2106.02441. 
+Protein sequence evolution with Direct Coupling Analysis ([DCA](https://en.wikipedia.org/wiki/Direct_coupling_analysis)) in [Julia](http://julialang.org). A complete description of the algorithm can be found at https://arxiv.org/abs/2106.02441. 
 
 Install
 -------
-
 To install, provided a recent Julia implementation is installed and open, type
 
 ```
@@ -15,7 +12,6 @@ julia> ]
 
 Overview
 --------
-
 Given a DNA wildtype (wt) sequence and the DCA parameters inferred from the relative protein family, the package provides a function to generate a Multiple Sequence Alignment (MSA) of protein sequences evolved from the wt via Gibbs Markov Chain Monte Carlo (MCMC) sampling.
 
 The user can control sequence divergence, selection pressure and number of sequences generated. The phylogeny is star-like. 
@@ -25,7 +21,6 @@ recapitulate the statistics of recent protein evolution experiments [Protein Str
 
 Usage
 -----
-
 To load the code type
 ```
 julia> using SeqEvol
@@ -49,12 +44,19 @@ There are more optional arguments that can be set:
 
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
 
+To reproduce the MSA of the last generation of the two aforementioned experiments
+[Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the parameters have been set to:
+* `PSE-1` --> `n_seq = 165000` , `steps = xx`, `T = 1.4`
+* `TEM-1` --> `n_seq = 35000` , `steps = `xx, `T = 1.2`
+* `AAC6` -->  `n_seq = 1250000` , `steps = xx`, `T = 2.0`
+
 
 Output
 ------
 * `extract_params()` outputs a tuple `(h, J)` containing the matrix of fields `h[a, i]` of size `21 x N` and the symmetric tensor of couplings `J[a_i, a_j, i, j]` of size `21 x 21 x N x N`.
 
 * `evolMSA()` outputs 0 and writes a MSA of evolved sequences in fasta format in the path specified in `output_path`.
+
 
 
 Future implementations
@@ -67,4 +69,4 @@ Future implementations
 
 Aknowledgments
 -----
-I would like to thank Pierre Barrat-Charlaix for help in setting up the package. Some functions for handlig and reading sequences and parameters have been inspired or copied by the following packages: [DCAUtils](https://github.com/carlobaldassi/DCAUtils.jl.git), [DCATools](https://github.com/PierreBarrat/DCATools.git). A direct integration with those packages is upcoming. 
+I would like to thank Pierre Barrat-Charlaix for help in setting up the package, as well as Giancarlo Croce and Juan Rodriguez-Rivas for sharing code and useful coding advices. Some functions for handlig and reading sequences and parameters have been inspired or copied by the following packages: [DCAUtils](https://github.com/carlobaldassi/DCAUtils.jl.git), [DCATools](https://github.com/PierreBarrat/DCATools.git). A direct integration with those packages is upcoming. 
