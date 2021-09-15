@@ -60,6 +60,7 @@ Output
 Future implementations
 ----- 
 * Parameters will be directly computed with [plmDCA](https://github.com/pagnani/PlmDCA) istead of having to provide them from outside
+* Integrate with [DCAUtils](https://github.com/carlobaldassi/DCAUtils.jl.git) and [DCATools](https://github.com/PierreBarrat/DCATools.git)
 * Different MCMC implementations of the dynamics
 * Non trivial phylogenies
 * Tell us!
