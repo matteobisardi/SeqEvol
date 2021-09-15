@@ -65,7 +65,7 @@ Future implementations
 * Integrate with [DCAUtils](https://github.com/carlobaldassi/DCAUtils.jl.git) and [DCATools](https://github.com/PierreBarrat/DCATools.git)
 * Different MCMC implementations of the dynamics
 * Non trivial phylogenies
-* Tell us!
+* Tell me!
 
 Aknowledgments
 -----
