@@ -85,8 +85,8 @@ end
 
 
 
-function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString, 
-	steps::Integer = 10, nseq::Integer = 100, T::Float64 = 1; 
+function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString; 
+	steps::Integer = 10, nseq::Integer = 100, T::Float64 = 1, 
 	wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
