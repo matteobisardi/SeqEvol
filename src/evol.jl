@@ -137,7 +137,7 @@ end
 
 
 function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString, 
-	MC_steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
+	steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
 	wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
@@ -146,15 +146,15 @@ function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_pa
 	N = length(seed_seq.Amino)
 	FastaWriter(output_path, "a") do file
 		for i in 1:n_seq	
-			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, MC_steps, h, J, N, T)
-			writeentry(file, "$i | original wt: $wt_name | $MC_steps MC steps | T = $(T)", vec2string(seq))	
+			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, steps, h, J, N, T)
+			writeentry(file, "$i | original wt: $wt_name | $steps MC steps | T = $(T)", vec2string(seq))	
 		end
 	end	
 end
 
 
 function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, 
-	wt_path::AbstractString, MC_steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
+	wt_path::AbstractString, steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
 	wt_name::AbstractString = "unknown wt") 
 	h, J = params
 	DNA_seq = readdlm(wt_path)[:, 1]
@@ -163,8 +163,8 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 	N = length(seed_seq.Amino)
 	FastaWriter(output_path, "a") do file
 		for i in 1:n_seq	
-			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, MC_steps, h, J, N, T)
-			writeentry(file, "$i | original wt: $wt_name | $MC_steps MC steps | T = $(T)", vec2string(seq))	
+			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, steps, h, J, N, T)
+			writeentry(file, "$i | original wt: $wt_name | $steps MC steps | T = $(T)", vec2string(seq))	
 		end
 	end	
 end
