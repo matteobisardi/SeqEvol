@@ -31,23 +31,6 @@ mutable struct SeqToEvolve
 end
 
 
-################################
-"""
-	cond_proba_DNA(k, amino_list, mutated_seq, h, J, prob, T = 1)
-
-	Returns a vector of the length of amino_list with the conditional probability of having
-	aminoacids in amino_list in that sequence context. 
-	Mapping 1 2.. 20 <-> A C.. W
-
-	"k": position along an amino acid chain
-	"amino_list": list of possible amino acids reachable from codon
-	"mutated_seq": sequence of amino acid of interest
-	"h", "J": parameters of DCA Hamiltonian
-	"prob": empty vector of length 20
-	"T": temperature of DCA
-
-	
-"""
 
 function cond_proba_DNA_gibbs(k, amino_list, mutated_seq, h, J,N,  T = 1)
 	prob = zeros(length(amino_list))
@@ -61,21 +44,6 @@ function cond_proba_DNA_gibbs(k, amino_list, mutated_seq, h, J,N,  T = 1)
 	return normalize(prob,1)
 end
 
-
-###############################
-"""
-	evol_seq_fix_steps_DNA(ref_seq, MC_steps, h, J, N, T = 1)
-
-	Returns a sequence obtained by Gibbs sampling after "MC_steps" steps.
-	In input the reference sequence, and all necessary paramters.
-	Optimized to get "pop", "prob" as imput from a "evol_msa_xxx" function.
-
-	"ref_seq": amino acid vector of initial sequence
-	"MC_steps" : number of Monte Carlo steps performed
-	"h", "J": parameters of DCA Hamiltonian
-	"N" : length of the evolved protein
-	"T" : temperature of DCA
-"""
 
 function evol_seq_fix_steps_DNA_gibbs(ref_seq, MC_steps, h, J, N, T = 1)
 	mutated_seq = deepcopy(ref_seq)
@@ -117,27 +85,8 @@ end
 
 
 
-
-
-#############################
-"""
-	evol_msa_fix_steps_DNA(output_file, seed_seq, MC_steps, n_seq, h, J, T = 1; n_MSA = 1, prot_name = "TEM-1")
-
-	Writes a MSA obtained by Gibbs sampling.
-
-	INPUT:
-	"output_file": file where to print MSA in fasta format
-	"seed_seq": amino acid vector of initial sequence
-	"MC_steps": number of Monte Carlo steps performed to evolve each seq
-	"n_seq": number of sequences in the MSA
-	"h", "J": parameters of DCA Hamiltonian
-	"T": temperature of DCA
-	"prot_name": name of the original protein sequence
-"""
-
-
 function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString, 
-	steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
+	steps::Integer = 10, nseq::Integer = 100, T::Float64 = 1; 
 	wt_name = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
@@ -145,7 +94,7 @@ function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_pa
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
 	FastaWriter(output_path, "a") do file
-		for i in 1:n_seq	
+		for i in 1:nseq	
 			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, steps, h, J, N, T)
 			writeentry(file, "$i | original wt: $wt_name | $steps MC steps | T = $(T)", vec2string(seq))	
 		end
@@ -154,7 +103,7 @@ end
 
 
 function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, 
-	wt_path::AbstractString, steps::Integer = 10, n_seq::Integer = 100, T::Float64 = 1; 
+	wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Float64 = 1, 
 	wt_name::AbstractString = "unknown wt") 
 	h, J = params
 	DNA_seq = readdlm(wt_path)[:, 1]
@@ -162,7 +111,7 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
 	FastaWriter(output_path, "a") do file
-		for i in 1:n_seq	
+		for i in 1:nseq	
 			seq = evol_seq_fix_steps_DNA_gibbs(seed_seq, steps, h, J, N, T)
 			writeentry(file, "$i | original wt: $wt_name | $steps MC steps | T = $(T)", vec2string(seq))	
 		end
