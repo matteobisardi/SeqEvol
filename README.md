@@ -33,7 +33,8 @@ The software provides two main functions:
 returns the fields `h` and couplings `J` written in the file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The files can be quite large, depending on the PFAM domain length `N`, up to hundrends of Mb. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
 
 
-* `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString, kwargs...)` :
+* `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString;
+*  steps, nseq, T, wt_name)`:
 
 writes a MSA of evolved sequences in `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` and the DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
 
@@ -41,6 +42,8 @@ There are more optional arguments that can be set:
 * `n_seq`: the number of sequences to be printed in the MSA. Default is `100`.
 * `steps`: number of Monte Carlo steps to be performed, proxy for sequence divergence. Default is `10`.
 * `T`: temperature of the sampling, proxy for selection pressure. Default is `1`.
+* `wt_name`: default is `unknown wt`.
+
 
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
 
