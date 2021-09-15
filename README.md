@@ -45,7 +45,8 @@ There are more optional arguments that can be set:
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
 
 To reproduce the MSA of the last generation of the two aforementioned experiments
-[Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the parameters have been set to:
+[Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the wt used can be found in `/data/wt` folder of this repo
+and the parameters have been set to:
 * `PSE-1` --> `n_seq` = `165000` , `steps` = `xx`, `T` = `1.4`
 * `TEM-1` --> `n_seq` = `35000` , `steps` = `xx`, `T` = `1.2`
 * `AAC6` -->  `n_seq` = `1250000` , `steps` = `xx`, `T` = `2.0`
