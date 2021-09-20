@@ -3,7 +3,7 @@ Protein sequence evolution with Direct Coupling Analysis ([DCA](https://en.wikip
 
 Install
 -------
-To install, provided a recent Julia implementation is installed and open, type
+To install, provided a recent Julia implementation (`1.5`) is installed and open, type
 
 ```
 julia> ]
@@ -30,11 +30,10 @@ The software provides two main functions:
 
 * `extract_params(path_params::AbstractString)` :
 
-returns the fields `h` and couplings `J` written in the file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The files can be quite large, depending on the PFAM domain length `N`, up to hundrends of Mb. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
+returns the fields `h` and couplings `J` written in the file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
 
 
-* `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString;
-*  steps, nseq, T, wt_name)`:
+* `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps, nseq, T, wt_name)`:
 
 writes a MSA of evolved sequences in `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` and the DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
 
