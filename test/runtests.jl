@@ -24,7 +24,7 @@ cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11,
 
 
 ## import test sequence
-seq_test = SeqEvol.fasta2matrix("../data/test_output/test_seq.fasta")[1, :]
+seq_test = SeqEvol.fasta2matrix("test_seq.fasta")[1, :]
 
 ## import wildtype AAC6
 DNA_seq  = DelimitedFiles.readdlm("../data/wt/AAC6_cod")[:, 1]
