@@ -87,7 +87,7 @@ end
 #MAIN FUNCTION
 ####
 
-function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name = "unknown wt") 
+function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
