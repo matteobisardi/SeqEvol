@@ -1,4 +1,5 @@
 using SeqEvol
+using DelimitedFiles
 using Random
 using FastaIO
 using Test
