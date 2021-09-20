@@ -4,7 +4,7 @@ using FastaIO
 using Test
 
 ## import test sequence
-seq_test = fasta2matrix("../data/alitest/seq_test.fasta")[1, :]
+seq_test = SeqEvol.fasta2matrix("../data/alitest/seq_test.fasta")[1, :]
 
 ## import wildtype AAC6
 DNA_seq  = readdlm("../data/wt/AAC6_pfam.fa")[:, 1]
