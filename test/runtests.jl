@@ -25,7 +25,7 @@ cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11,
 
 
 ## import test sequences
-seq_test = SeqEvol.fasta2matrix("test_seq.fasta")
+seq_test = SeqEvol.fasta2matrix("correct_test_seqs")
 
 ## run the code
 params = SeqEvol.extract_params("../data/params/params_BM_acetyltransf_1.dat.gz")
