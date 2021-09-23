@@ -24,13 +24,13 @@ cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11,
         "TGC"=> 2, "TGT"=>2 , "TGA"=> 21, "TGG"=> 19)
 
 
-## import test sequence
+## import test sequences
 seq_test = SeqEvol.fasta2matrix("test_seq.fasta")
 
 ## run the code
 params = SeqEvol.extract_params("../data/params/params_BM_acetyltransf_1.dat.gz")
 Random.seed!(2021)
-SeqEvol.evolMSA("test_SeqEvol.txt", params, "../data/wt/AAC6_cod")
+SeqEvol.evolMSA("test_SeqEvol.txt", params, "../data/wt/AAC6_cod", nseq = 100, steps = 10, T = 1)
 seq = SeqEvol.fasta2matrix("test_SeqEvol.fasta")
 rm("test_SeqEvol.fasta")
 
