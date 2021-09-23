@@ -3,7 +3,7 @@ Protein sequence evolution with Direct Coupling Analysis ([DCA](https://en.wikip
 
 Install
 -------
-To install, provided a recent Julia implementation (`1.5`) is installed and open, type
+To install, provided a recent Julia implementation (1.5) is installed and open, type
 
 ```
 julia> ]
@@ -32,10 +32,10 @@ The software provides two main functions:
 writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
 
 There are more optional arguments that can be set:
-* `nseq`: the number of sequences to be printed in the MSA. Default is `100`.
-* `steps`: number of Monte Carlo steps to be performed, proxy for sequence divergence. Default is `10`.
-* `T`: temperature of the sampling, proxy for selection pressure. Default is `1`.
-* `wt_name`: default is `unknown wt`.
+* `nseq`: the number of sequences to be printed in the MSA. Default is 100.
+* `steps`: number of Monte Carlo steps to be performed, proxy for sequence divergence. Default is 10.
+* `T`: temperature of the sampling, proxy for selection pressure. Default is 1.
+* `wt_name`: default is "unknown wt".
 
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
 
@@ -47,14 +47,16 @@ returns the fields `h` and couplings `J` written in the (possibly gzipped) file 
 To reproduce the MSA of the last generation of the two aforementioned experiments
 [Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the wt used can be found in `/data/wt` folder of this repo
 and the parameters have been set to:
-* `PSE-1` --> `nseq` = `165000` , `steps` = `75`, `T` = `1.4`
-* `TEM-1` --> `nseq` = `35000` , `steps` = `53`, `T` = `1.2`
-* `AAC6` -->  `nseq` = `1250000` , `steps` = `17`, `T` = `2.0`
 
+```
+PSE-1 --> nseq = 165000 , steps = 75, T = 1.4
+TEM-1 --> nseq = 35000 , steps = 53, T = 1.2
+AAC6 -->  nseq = 1250000 , steps = 17, T = 2
+```
 
 Output
 ------
-* `extract_params()` outputs a tuple `(h, J)` containing the matrix of fields `h[a, i]` of size `21 x N` and the symmetric tensor of couplings `J[a_i, a_j, i, j]` of size `21 x 21 x N x N`.
+* `extract_params()` outputs a tuple (`h`, `J`) containing the matrix of fields `h[a, i]` of size `21 x N` and the symmetric tensor of couplings `J[a_i, a_j, i, j]` of size `21 x 21 x N x N`.
 
 * `evolMSA()` outputs 0 and writes a MSA of evolved sequences in fasta format in the path specified by `output_path`.
 
@@ -71,8 +73,11 @@ The input parameters file can be plaintext (ASCII) or gzip-compressed plaintext 
 The format of the parameters is:
 
 ```
-J i j a b val
-h i a val
+"J" i j a b  val
+
+...
+
+"h" i a      val
 ```
 
 They start from `0` for both positions and aminoacids (BM parameters are generated with `C++` ), and are then converted in the code.
