@@ -58,6 +58,24 @@ Output
 
 * `evolMSA()` outputs 0 and writes a MSA of evolved sequences in fasta format in the path specified by `output_path`.
 
+Conventions
+-----
+The mapping between the aminoacid symbols and the integers uses this table:
+```
+  A  C  D  E  F  G  H  I  K  L  M  N  P  Q  R  S  T  V  W  Y
+  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+```
+Any unrecognized capital letter and the gap symbol `-` are mapped to the value 21.
+
+The input parameters file can be plaintext (ASCII) or gzip-compressed plaintext (with the extension ".gz").
+The format of the parameters is:
+
+```
+J i j a b val
+h i a val
+```
+
+They start from `0` for both positions and aminoacids (BM parameters are generated with `C++` ), and are then converted in the code.
 
 
 Future implementations
