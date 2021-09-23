@@ -101,7 +101,7 @@ end
 
 """
 
-function read_par_BM(path::AbstractString, q::Integer = 21)
+function read_par_BM(path::AbstractString, q::Integer = 21)	
     params = readdlm(path,' ', use_mmap = true)[:, 2:6]
     l_file = size(params, 1) 
     N = Integer(((q - 2) + sqrt( (q-2)^2 + 8*l_file))/(2*q))
@@ -132,10 +132,14 @@ end
 
 
 function extract_params(path_params::AbstractString; q::Integer = 21)
-    h, J = read_par_BM(path_params, q)
-    h = set_max_field_to_0(h)
-    J = symmetrize_J(J)
-    return h, J
+	!isfile(path_params) && error("Error: \"$(path_params)\" does not exist. 
+		Please check the spelling or the folder path.")
+	end
+
+	h, J = read_par_BM(path_params, q)
+	h = set_max_field_to_0(h)
+	J = symmetrize_J(J)
+	return h, J
 end
 
 
