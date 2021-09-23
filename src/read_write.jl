@@ -159,8 +159,7 @@ end
 
 
 function extract_params(path_par::AbstractString; q::Integer = 21)
-	!isfile(path_params) && error("Error: \"$(path_params)\" does not exist. 
-		Please check the spelling or the folder path.")
+	!isfile(path_params) && error("Error: the file \"$(path_params)\" does not exist. Please check the spelling or the folder path.")
 	file = GZip.open(path_par)
 	h, J = read_par_BM(file, q)
 	h = set_max_field_to_0(h)
