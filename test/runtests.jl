@@ -3,6 +3,7 @@ using DelimitedFiles
 using Random
 using FastaIO
 using Test
+using GZip
 
 ## Genetic code
 cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11, 
