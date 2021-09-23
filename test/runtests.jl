@@ -30,7 +30,7 @@ seq_test = SeqEvol.fasta2matrix("test_seq.fasta")
 ## run the code
 params = SeqEvol.extract_params("../data/params/params_BM_acetyltransf_1.dat.gz")
 Random.seed!(2021)
-SeqEvol.evolMSA("test_SeqEvol.txt", params, "../data/wt/AAC6_cod", nseq = 100, steps = 10, T = 1)
+SeqEvol.evolMSA("test_SeqEvol.fasta", params, "../data/wt/AAC6_cod", nseq = 100, steps = 10, T = 1)
 seq = SeqEvol.fasta2matrix("test_SeqEvol.fasta")
 rm("test_SeqEvol.fasta")
 
