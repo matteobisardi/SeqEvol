@@ -49,9 +49,9 @@ There are more optional arguments that can be set:
 To reproduce the MSA of the last generation of the two aforementioned experiments
 [Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the wt used can be found in `/data/wt` folder of this repo
 and the parameters have been set to:
-* `PSE-1` --> `n_seq` = `165000` , `steps` = `75`, `T` = `1.4`
-* `TEM-1` --> `n_seq` = `35000` , `steps` = `53`, `T` = `1.2`
-* `AAC6` -->  `n_seq` = `1250000` , `steps` = `17`, `T` = `2.0`
+* `PSE-1` --> `nseq` = `165000` , `steps` = `75`, `T` = `1.4`
+* `TEM-1` --> `nseq` = `35000` , `steps` = `53`, `T` = `1.2`
+* `AAC6` -->  `nseq` = `1250000` , `steps` = `17`, `T` = `2.0`
 
 
 Output
