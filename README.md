@@ -14,10 +14,9 @@ Overview
 --------
 Given a DNA wildtype (wt) sequence and the DCA parameters inferred from the relative protein family, the package provides a function to generate a Multiple Sequence Alignment (MSA) of protein sequences evolved from the wt via Gibbs Markov Chain Monte Carlo (MCMC) sampling.
 
-The user can control sequence divergence, selection pressure and number of sequences generated. The phylogeny is star-like. 
+The user can control sequence divergence, selection pressure and number of sequences generated. The resulting phylogeny is star-like. 
 
-It has been showen that MSAs generated in this way can
-recapitulate the statistics of recent protein evolution experiments [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
+It has been showen that MSAs generated in this way recapitulate the statistics of recent protein evolution experiments [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
 
 Usage
 -----
@@ -28,23 +27,22 @@ julia> using SeqEvol
 
 The software provides two main functions:
 
-* `extract_params(path_params::AbstractString)` :
-
-returns the fields `h` and couplings `J` written in the file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
-
-
 * `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps::Integer, nseq::Integer, T::Real, wt_name::AbstractString)`:
 
-writes a MSA of evolved sequences in `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` and the DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
+writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
 
 There are more optional arguments that can be set:
-* `n_seq`: the number of sequences to be printed in the MSA. Default is `100`.
+* `nseq`: the number of sequences to be printed in the MSA. Default is `100`.
 * `steps`: number of Monte Carlo steps to be performed, proxy for sequence divergence. Default is `10`.
 * `T`: temperature of the sampling, proxy for selection pressure. Default is `1`.
 * `wt_name`: default is `unknown wt`.
 
-
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
+
+* `extract_params(path_params::AbstractString)` :
+
+returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The parameters can also be retrived on *figshare* at this link: . The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
+
 
 To reproduce the MSA of the last generation of the two aforementioned experiments
 [Fantini et al.](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Stiffler et al.](https://www.sciencedirect.com/science/article/pii/S2405471219304284) the wt used can be found in `/data/wt` folder of this repo
@@ -58,7 +56,7 @@ Output
 ------
 * `extract_params()` outputs a tuple `(h, J)` containing the matrix of fields `h[a, i]` of size `21 x N` and the symmetric tensor of couplings `J[a_i, a_j, i, j]` of size `21 x 21 x N x N`.
 
-* `evolMSA()` outputs 0 and writes a MSA of evolved sequences in fasta format in the path specified in `output_path`.
+* `evolMSA()` outputs 0 and writes a MSA of evolved sequences in fasta format in the path specified by `output_path`.
 
 
 
