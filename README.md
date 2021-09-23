@@ -29,7 +29,8 @@ The software provides two main functions:
 
 * `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps::Integer, nseq::Integer, T::Real, wt_name::AbstractString)`:
 
-writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once.
+writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once
+because most of the time is spent in reading the paramter files.
 
 There are more optional arguments that can be set:
 * `nseq`: the number of sequences to be printed in the MSA. Default is 100.
