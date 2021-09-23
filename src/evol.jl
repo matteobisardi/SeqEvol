@@ -93,9 +93,9 @@ function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_pa
 		    Please check the spelling or the folder path.")
 	end
 	
-	steps < 1 && throw(DomainError('steps' must be a positive integer."))
-	nseq < 1 && throw(DomainError('nseq' must be a positive integer."))
-	T <= 0 && throw(DomainError('T' must be a positive real number."))
+	steps < 1 && throw(DomainError("'steps' must be a positive integer."))
+	nseq < 1 && throw(DomainError("'nseq' must be a positive integer."))
+	T <= 0 && throw(DomainError("'T' must be a positive real number."))
 	
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
@@ -117,9 +117,9 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 		    Please check the spelling or the folder path.")
 	end
 	
-	steps < 1 && throw(DomainError('steps' must be a positive integer."))
-	nseq < 1 && throw(DomainError('nseq' must be a positive integer."))
-	T <= 0 && throw(DomainError('T' must be a positive real number."))
+	steps < 1 && throw(DomainError("'steps' must be a positive integer."))
+	nseq < 1 && throw(DomainError("'nseq' must be a positive integer."))
+	T <= 0 && throw(DomainError("'T' must be a positive real number."))
 				
 	h, J = params
 	DNA_seq = readdlm(wt_path)[:, 1]
