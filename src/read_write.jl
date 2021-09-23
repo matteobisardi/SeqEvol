@@ -129,14 +129,41 @@ function read_par_BM(path::AbstractString, q::Integer = 21)
 	return h, J
 end
 
+function read_par_BM(pathGZip::GZipStream, q::Integer = 21)	
+    params = readdlm(pathGZip,' ', use_mmap = true)[:, 2:6]
+    l_file = size(params, 1) 
+    N = Integer(((q - 2) + sqrt( (q-2)^2 + 8*l_file))/(2*q))
+	J = Array{Float64}(undef, q, q, N, N)
+	h = Array{Float64}(undef, q, N)
+	n_J = Int(q*q*N*(N-1)/2)
+	n_h = q*N
+
+	for k in 1:n_J
+		i, j, a, b, par_j = params[k, :]
+		i += 1
+		j += 1
+		a == 0 && (a = 21)
+		b == 0 && (b = 21)
+		J[a, b, i, j] = par_j
+	end
+
+	for l in (n_J + 1): n_h + n_J
+		i, a, par_h = params[l, :]
+		i += 1
+		a == 0 && (a = 21)
+		h[a, i] = par_h
+	end
+
+	return h, J
+end
 
 
 function extract_params(path_params::AbstractString; q::Integer = 21)
 	!isfile(path_params) && error("Error: \"$(path_params)\" does not exist. 
 		Please check the spelling or the folder path.")
 	end
-
-	h, J = read_par_BM(path_params, q)
+	file = GZip.open(path_params)
+	h, J = read_par_BM(file, q)
 	h = set_max_field_to_0(h)
 	J = symmetrize_J(J)
 	return h, J
