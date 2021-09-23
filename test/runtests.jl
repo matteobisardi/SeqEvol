@@ -33,7 +33,7 @@ amino_seq = [cod2amino[codon] for codon in DNA_seq]
 seed_seq = SeqEvol.SeqToEvolve(amino_seq, DNA_seq)
 
 ## run the code
-h, J = SeqEvol.extract_params("../data/params/params_BM_acetyltransf_1.dat")
+h, J = SeqEvol.extract_params("../data/params/params_BM_acetyltransf_1.dat.gz")
 Random.seed!(2021)
 seq = SeqEvol.evol_seq_fix_steps_DNA_gibbs(seed_seq, 100, h, J, 117)
 
