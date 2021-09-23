@@ -89,8 +89,7 @@ end
 
 function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
 	for file in [output_path, params_path, wt_path]
-	    !isfile(file) && error("Error: \"$(file)\" does not exist. 
-		    Please check the spelling or the folder path.")
+	    !isfile(file) && error("Error: the file \"$(file)\" does not exist. Please check the spelling or the folder path.")
 	end
 	
 	steps < 1 && throw(DomainError("'steps' must be a positive integer."))
@@ -113,8 +112,7 @@ end
 
 function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
 	for file in [output_path, wt_path]
-	    !isfile(file) && error("Error: \"$(file)\" does not exist. 
-		    Please check the spelling or the folder path.")
+	    !isfile(file) && error("Error: the \"$(file)\" does not exist. Please check the spelling or the folder path.")
 	end
 	
 	steps < 1 && throw(DomainError("'steps' must be a positive integer."))
