@@ -88,6 +88,15 @@ end
 ####
 
 function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
+	for file in [output_path, params_path, wt_path]
+	    !isfile(file) && error("Error: \"$(file)\" does not exist. 
+		    Please check the spelling or the folder path.")
+	end
+	
+	steps < 1 && throw(DomainError('steps' must be a positive integer."))
+	nseq < 1 && throw(DomainError('nseq' must be a positive integer."))
+	T <= 0 && throw(DomainError('T' must be a positive real number."))
+	
 	h, J = extract_params(params_path)
 	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
@@ -103,6 +112,15 @@ end
 
 
 function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
+	for file in [output_path, wt_path]
+	    !isfile(file) && error("Error: \"$(file)\" does not exist. 
+		    Please check the spelling or the folder path.")
+	end
+	
+	steps < 1 && throw(DomainError('steps' must be a positive integer."))
+	nseq < 1 && throw(DomainError('nseq' must be a positive integer."))
+	T <= 0 && throw(DomainError('T' must be a positive real number."))
+				
 	h, J = params
 	DNA_seq = readdlm(wt_path)[:, 1]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
@@ -117,7 +135,7 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 end
 
 
-
+function 
 
 
 
