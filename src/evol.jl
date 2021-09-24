@@ -97,7 +97,10 @@ function evolMSA(output_path::AbstractString, params_path::AbstractString, wt_pa
 	T <= 0 && throw(DomainError(T, "'T' must be a positive real number."))
 	
 	h, J = extract_params(params_path)
-	DNA_seq = readdlm(wt_path)[:, 1]
+	
+	seq = join(readdlm(wt_path, skipstart = 1))
+	L = Int64(length(seq)/3)
+	DNA_seq = [seq[((i-1)*3 +1):(i*3)] for i in 1:L]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
@@ -120,7 +123,10 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 	T <= 0 && throw(DomainError(T, "'T' must be a positive real number."))
 				
 	h, J = params
-	DNA_seq = readdlm(wt_path)[:, 1]
+	
+	seq = join(readdlm(wt_path, skipstart = 1))
+	L = Int64(length(seq)/3)
+	DNA_seq = [seq[((i-1)*3 +1):(i*3)] for i in 1:L]
 	amino_seq = [cod2amino[codon] for codon in DNA_seq]
 	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
 	N = length(seed_seq.Amino)
