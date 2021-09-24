@@ -5,7 +5,7 @@ Install
 -------
 To install, provided a recent Julia implementation (1.5) is installed and open, type
 
-```
+```julia
 julia> ]
 (v1.?) pkg> add https://github.com/matteobisardi/SeqEvol.git
 ```
@@ -21,13 +21,16 @@ It has been showen that MSAs generated in this way recapitulate the statistics o
 Usage
 -----
 To load the code type
-```
+```julia
 julia> using SeqEvol
 ```
 
 The software provides two main functions:
 
-* `evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; steps::Integer, nseq::Integer, T::Real, wt_name::AbstractString)`:
+```julia
+1) evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt_path::AbstractString; 
+steps::Integer, nseq::Integer, T::Real, wt_name::AbstractString)
+```
 
 writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient only in case the function is used once
 because most of the time is spent in reading the paramter files.
@@ -40,7 +43,9 @@ There are more optional arguments that can be set:
 
 `T` is inversely proportional to the selection pressure. `T = 1` is the inference temperature, it corresponds to the selection pressure that sequences in the protein family likely have experience in history. `T --> inf` corresponds to no selection pressure, i.e. a random walk in genotype space. `T --> 0` corresponds to high selection pressure, i.e. the sequence is optimized (according to the landscape inferred by DCA).
 
-* `extract_params(path_params::AbstractString)` :
+```julia
+2) extract_params(path_params::AbstractString)
+``` 
 
 returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The parameters can also be retrived on *figshare* at this link: . The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
 
