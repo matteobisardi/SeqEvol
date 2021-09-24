@@ -32,5 +32,5 @@ Random.seed!(2021)
 SeqEvol.evolMSA("test_SeqEvol.fasta", "../data/params/params_BM_acetyltransf_1.dat.gz", "../data/wt/AAC6_DNA_pfam.fasta", nseq = 100, steps = 10, T = 1)
 seqs = SeqEvol.fasta2matrix("test_SeqEvol.fasta")
 rm("test_SeqEvol.fasta")
-@test size(seq_test) == size(seqs) 
+@test size(seqs_test) == size(seqs) 
 
