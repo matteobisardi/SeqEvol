@@ -25,12 +25,12 @@ cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11,
 
 
 ## import test sequences
-seq_test = SeqEvol.fasta2matrix("correct_test_seqs")
+seqs_test = SeqEvol.fasta2matrix("correct_test_seqs")
 
 ## run the code
 Random.seed!(2021)
-SeqEvol.evolMSA("test_SeqEvol.fasta", "../data/params/params_BM_acetyltransf_1.dat.gz", "../data/wt/AAC6_cod", nseq = 100, steps = 10, T = 1)
-seq = SeqEvol.fasta2matrix("test_SeqEvol.fasta")
+SeqEvol.evolMSA("test_SeqEvol.fasta", "../data/params/params_BM_acetyltransf_1.dat.gz", "../data/wt/AAC6_DNA_pfam.fasta", nseq = 100, steps = 10, T = 1)
+seqs = SeqEvol.fasta2matrix("test_SeqEvol.fasta")
 rm("test_SeqEvol.fasta")
+@test size(seq_test) == size(seqs) 
 
-@test seq == seq_test
