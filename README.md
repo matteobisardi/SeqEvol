@@ -55,9 +55,9 @@ To reproduce the MSA of the last generation of the two aforementioned experiment
 and the parameters have been set to:
 
 ```
-PSE-1 --> nseq = 165000 , steps = 75, T = 1.4
-TEM-1 --> nseq = 35000 , steps = 53, T = 1.2
-AAC6 -->  nseq = 1250000 , steps = 17, T = 2
+PSE-1 --> nseq = 165000,  steps = 75, T = 1.4
+TEM-1 --> nseq = 35000,   steps = 53, T = 1.2
+AAC6 -->  nseq = 1250000, steps = 17, T = 2
 ```
 
 Output
