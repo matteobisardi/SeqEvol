@@ -47,7 +47,7 @@ There are more optional arguments that can be set:
 2) extract_params(path_params::AbstractString)
 ``` 
 
-returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The parameters can also be retrived on *figshare* at this link: . The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
+returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. Two parameter files are provided in the SI of the article for the PFAM families `PF00583` and `PF13354`. The parameters can also be retrived on *figshare* at this links: [BM PF00583](https://figshare.com/s/f64242209e89dd05ffc7), . The files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
 
 
 To reproduce the MSA of the last generation of the two aforementioned experiments
