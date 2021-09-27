@@ -16,7 +16,7 @@ Given a DNA wildtype (wt) sequence and the DCA parameters inferred from the rela
 
 The user can control sequence divergence, selection pressure and number of sequences generated. The resulting phylogeny is star-like. 
 
-It has been showen that MSAs generated in this way recapitulate the statistics of recent protein evolution experiments [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
+It has been showen that MSAs generated in this way recapitulate the statistics of two protein evolution experiments: [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
 
 Usage
 -----
