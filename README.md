@@ -34,7 +34,7 @@ steps::Integer, nseq::Integer, T::Real, wt_name::AbstractString)
 
 writes a MSA of evolved sequences to `output_path`. Takes as input the DCA parameters `params` obtained with `extract_params()` (see after) and the fasta DNA wildtype path `wt_path`. Optionally, instead of `params`, the parameters path can be input directly, this is convenient just for the case that the function is used onely once: reading the paramters files tipically takes much more time than generating the output.
 
-There are more optional arguments that can be set:
+The optional arguments that can be set are the following:
 * `nseq`: the number of sequences to be printed in the MSA. Default is 100.
 * `steps`: number of Monte Carlo steps to be performed, proxy for sequence divergence. Default is 10.
 * `T`: temperature of the sampling, proxy for selection pressure. Default is 1.
