@@ -58,7 +58,7 @@ PSE-1 --> nseq = 165000,  steps = 75, T = 1.4
 TEM-1 --> nseq = 35000,   steps = 53, T = 1.2
 AAC6 -->  nseq = 1250000, steps = 17, T = 2
 ```
-In the repo [DataSeqEvol](https://github.com/matteobisardi/DataSeqEvol) is it possible to directly download the alignments.
+In the Github repo [DataSeqEvol](https://github.com/matteobisardi/DataSeqEvol) is it possible to directly download the alignments.
 
 Output
 ------
@@ -87,7 +87,6 @@ The format of the parameters is:
 ```
 
 They start from `0` for both positions and aminoacids (BM parameters are generated with `C++` ), and are then converted in the code.
-
 
 Future implementations
 ----- 
