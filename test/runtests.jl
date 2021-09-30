@@ -21,7 +21,8 @@ cod2amino = Dict( "ATA" => 8, "ATC" => 8, "ATT"=>8, "ATG"=> 11,
         "TCA"=>16, "TCC"=>16, "TCG"=>16, "TCT"=>16, 
         "TTC"=>5, "TTT"=>5, "TTA"=>10, "TTG"=>10, 
         "TAC"=>20, "TAT"=>20, "TAA"=> 21, "TAG"=> 21, 
-        "TGC"=> 2, "TGT"=>2 , "TGA"=> 21, "TGG"=> 19)
+        "TGC"=> 2, "TGT"=>2 , "TGA"=> 21, "TGG"=> 19, 
+        "---" => 21)
 
 
 ## import test sequences
