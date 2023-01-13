@@ -165,8 +165,12 @@ function evolMSA(params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt::Abstra
 	end
 
 	return MSA
+
+	
 end
 
-
+function evolMSA(a)
+	return a
+end
 
 
