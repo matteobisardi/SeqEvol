@@ -16,7 +16,7 @@ Given a DNA wildtype (wt) sequence and the DCA parameters inferred from the rela
 
 The user can control sequence divergence, selection pressure and number of sequences generated. The resulting phylogeny is star-like. 
 
-It has been showen that MSAs generated in this way recapitulate the statistics of two protein evolution experiments: [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
+It has been shown that MSAs generated in this way recapitulate the statistics of two protein evolution experiments: [Protein Structural Information and Evolutionary Landscape by In Vitro Evolution](https://academic.oup.com/mbe/article/37/4/1179/5610534?login=true) and [Protein Structure from Experimental Evolution](https://www.sciencedirect.com/science/article/pii/S2405471219304284).
 
 Usage
 -----
@@ -46,7 +46,7 @@ The optional arguments that can be set are the following:
 2) extract_params(path_params::AbstractString)
 ``` 
 
-returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) parameters of the correponding protein family. The compressed parameters can be found in the companion repo [DataSeqEvol](https://github.com/matteobisardi/DataSeqEvol) as well as via *figshare* at this links: [BM PF00583](https://figshare.com/s/f64242209e89dd05ffc7), [BM PF13354](https://figshare.com/s/fe23444e3a19af722034). In general the paramer files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
+returns the fields `h` and couplings `J` written in the (possibly gzipped) file `params_path`, i.e. the [bmDCA](https://arxiv.org/abs/2109.04105) (code available at this Github [repo](https://github.com/anna-pa-m/adabmDCA)) parameters of the correponding protein family. The compressed parameters can be found in the companion repo [DataSeqEvol](https://github.com/matteobisardi/DataSeqEvol) as well as via *figshare* at this links: [BM PF00583](https://figshare.com/s/f64242209e89dd05ffc7), [BM PF13354](https://figshare.com/s/fe23444e3a19af722034). In general the parameter files can be quite large, depending on the PFAM domain length `N`, up to Gigabytes. Hence, this function allows to read the parameters only once, and use them as input for `evolMSA()`.
 
 
 To reproduce the MSA of the last generation of the two aforementioned experiments
