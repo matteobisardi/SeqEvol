@@ -140,5 +140,33 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 end
 
 
+function evolMSA(params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, wt::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
+	for file in [wt_path]
+	    !isfile(file) && error("Error: the file \"$(file)\" does not exist. Please check the spelling or the folder path.")
+	end
+	
+	steps < 1 && throw(DomainError(steps, "'steps' must be a positive integer."))
+	nseq < 1 && throw(DomainError(nseq, "'nseq' must be a positive integer."))
+	T <= 0 && throw(DomainError(T, "'T' must be a positive real number."))
+				
+	h, J = params
+	
+	seq = join(readdlm(wt_path, skipstart = 1))
+	L = Int64(length(seq)/3)
+	DNA_seq = [seq[((i-1)*3 +1):(i*3)] for i in 1:L]
+	amino_seq = [cod2amino[codon] for codon in DNA_seq]
+	seed_seq = SeqToEvolve(amino_seq, DNA_seq)
+	N = length(seed_seq.Amino)
+
+	MSA = zeros(Int16, nseq, N)
+
+	for i in 1:nseq	
+		MSA[i, :] = evol_seq_fix_steps_DNA_gibbs(seed_seq, steps, h, J, N, T)
+	end
+
+	return MSA
+end
+
+
 
 
