@@ -140,7 +140,7 @@ function evolMSA(output_path::AbstractString, params::Tuple{Array{Float64, 2}, A
 end
 
 
-function evolMSA(params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, seq::AbstractString; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
+function evolMSA(params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, seq::String; steps::Integer = 10, nseq::Integer = 100, T::Real = 1, wt_name::AbstractString = "unknown wt") 
 	
 	steps < 1 && throw(DomainError(steps, "'steps' must be a positive integer."))
 	nseq < 1 && throw(DomainError(nseq, "'nseq' must be a positive integer."))
