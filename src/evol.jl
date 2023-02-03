@@ -164,8 +164,5 @@ function evolMSA(params::Tuple{Array{Float64, 2}, Array{Float64, 4}}, seq::Strin
 	
 end
 
-function evolMSA(a)
-	return a
-end
 
 
